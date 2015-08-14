@@ -25,4 +25,5 @@ dependencies {
     compile 'com.orhanobut:logger:1.11'
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile 'com.android.support:design:22.2.0'
+    compile 'com.facebook.fresco:fresco:0.5.2'
 }

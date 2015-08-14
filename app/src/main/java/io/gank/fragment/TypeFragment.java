@@ -23,9 +23,7 @@ public class TypeFragment extends Fragment {
     private MainPageAdapter mPageAdapter;
     private ViewPager mViewPager;
     private TabLayout mTabLayout;
-    private String[] mTypes = {"福利", "Android", "iOS", "休息视频", "拓展资源", "前端"};
     private Context mContext;
-    private Toolbar mToolbar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,31 +41,26 @@ public class TypeFragment extends Fragment {
     }
 
     private void initView(View view) {
-        mToolbar = (Toolbar) view.findViewById(R.id.toolbar);
         mViewPager = (ViewPager) view.findViewById(R.id.viewpager);
         mTabLayout = (TabLayout) view.findViewById(R.id.tabs);
         setupViewPager();
     }
 
-
     private void setupViewPager() {
-        mPageAdapter = new MainPageAdapter(getChildFragmentManager(), getFragmentList(), mTypes);
+        mPageAdapter = new MainPageAdapter(getChildFragmentManager(), getFragmentList(), getResources().getStringArray(R.array.type));
         mViewPager.setAdapter(mPageAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
     }
 
-    public Toolbar getToolbar() {
-        return mToolbar;
-    }
-
     private List<Fragment> getFragmentList() {
-
         List<Fragment> pagerFragmentList = new ArrayList<Fragment>();
-        for (String type : mTypes) {
-            pagerFragmentList.add(new Fragment());
-        }
-//        pagerFragmentList.add(ChatFragment.newInstance());
-//        pagerFragmentList.add(ContactFragment.newInstance());
+        pagerFragmentList.add(WelfareFragment.newInstance());
+        pagerFragmentList.add(AndroidFragment.newInstance());
+        pagerFragmentList.add(IosFragment.newInstance());
+        pagerFragmentList.add(VideoFragment.newInstance());
+        pagerFragmentList.add(ExpandFragment.newInstance());
+        pagerFragmentList.add(FrontEndFragment.newInstance());
+        pagerFragmentList.add(RecommendationFragment.newInstance());
         return pagerFragmentList;
 
     }

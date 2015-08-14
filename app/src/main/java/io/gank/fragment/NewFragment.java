@@ -14,7 +14,7 @@ import io.gank.R;
 public class NewFragment extends Fragment {
 
     private static NewFragment mNewFragment;
-    private Toolbar mToolbar;
+//    private Toolbar mToolbar;
     private Context mContext;
 
     @Override
@@ -27,12 +27,12 @@ public class NewFragment extends Fragment {
     }
 
     private void initView(View view) {
-        mToolbar = (Toolbar) view.findViewById(R.id.toolbar);
+//        mToolbar = (Toolbar) view.findViewById(R.id.toolbar);
     }
 
-    public Toolbar getToolbar() {
-        return mToolbar;
-    }
+//    public Toolbar getToolbar() {
+//        return mToolbar;
+//    }
 
 
     public static NewFragment newInstance() {

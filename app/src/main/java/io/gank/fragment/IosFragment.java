@@ -3,7 +3,6 @@ package io.gank.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +10,9 @@ import android.view.ViewGroup;
 import io.gank.R;
 
 
-public class RandomFragment extends Fragment {
+public class IosFragment extends Fragment {
 
-    private static RandomFragment mRandomFragment;
+    private static IosFragment mIosFragment;
 //    private Toolbar mToolbar;
     private Context mContext;
 
@@ -34,12 +33,12 @@ public class RandomFragment extends Fragment {
 //        return mToolbar;
 //    }
 
-    public static RandomFragment newInstance() {
-        if (mRandomFragment == null) {
-            mRandomFragment = new RandomFragment();
-        }
-        return mRandomFragment;
-    }
 
+    public static IosFragment newInstance() {
+        if (mIosFragment == null) {
+            mIosFragment = new IosFragment();
+        }
+        return mIosFragment;
+    }
 
 }

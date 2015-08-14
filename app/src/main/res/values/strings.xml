@@ -7,5 +7,19 @@
     <string name="drawer_close">关闭</string>
     <string name="name">Satan</string>
     <string name="github">https://github.com/wenjue</string>
+    <string name="new_data">每日一干</string>
+    <string name="type_data">分类干货</string>
+    <string name="random_data">随机干货</string>
+    <string name="about">关于</string>
+    <string name="back">再按一次返回键退出</string>
+    <array name="type">
+        <item>福利</item>
+        <item>Android</item>
+        <item>iOS</item>
+        <item>休息视频</item>
+        <item>拓展资源</item>
+        <item>前端</item>
+        <item>瞎推荐</item>
+    </array>
 
 </resources>
