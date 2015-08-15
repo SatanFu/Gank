@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 import io.gank.R;
 
 
-public class IosFragment extends Fragment {
+public class AboutFragment extends Fragment {
 
-    private static IosFragment mIosFragment;
+    private static AboutFragment mAboutFragment;
 //    private Toolbar mToolbar;
     private Context mContext;
 
@@ -33,12 +33,12 @@ public class IosFragment extends Fragment {
 //        return mToolbar;
 //    }
 
-
-    public static IosFragment newInstance() {
-        if (mIosFragment == null) {
-            mIosFragment = new IosFragment();
+    public static AboutFragment newInstance() {
+        if (mAboutFragment == null) {
+            mAboutFragment = new AboutFragment();
         }
-        return mIosFragment;
+        return mAboutFragment;
     }
+
 
 }

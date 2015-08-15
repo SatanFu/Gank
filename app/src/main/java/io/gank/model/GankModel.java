@@ -15,6 +15,15 @@ public class GankModel implements Serializable {
     private String objectId;
     private String createdAt;
     private String updatedAt;
+    private String publishedAt;
+
+    public String getPublishedAt() {
+        return publishedAt;
+    }
+
+    public void setPublishedAt(String publishedAt) {
+        this.publishedAt = publishedAt;
+    }
 
     public String getUrl() {
         return url;

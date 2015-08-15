@@ -9,4 +9,9 @@
         <item name="colorPrimaryDark">#00796B</item>
         <item name="colorAccent">#00796B</item>
     </style>
+
+    <style name="ViaTextAppearance">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/md_grey_400</item>
+    </style>
 </resources>

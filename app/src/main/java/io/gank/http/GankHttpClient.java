@@ -1,5 +1,7 @@
 package io.gank.http;
 
+import com.orhanobut.logger.Logger;
+
 import io.gank.model.NewResultModel;
 import io.gank.model.RandomResultModel;
 import io.gank.model.ResultModel;
@@ -29,14 +31,17 @@ public class GankHttpClient {
 
 
     public static void getNewData(int year, int month, int day, Callback<NewResultModel> callback) {
+        Logger.e(year + "-" + month + "-" + day);
         getGankService().getNewData(String.valueOf(year), StringUtils.addZeroForTime(month), StringUtils.addZeroForTime(day), callback);
     }
 
     public static void getTypeData(String type, int page, Callback<ResultModel> callback) {
+        Logger.e(type + "-" + page);
         getGankService().getTypeData(type, COUNT, String.valueOf(page), callback);
     }
 
     public static void getRandomData(String type, Callback<RandomResultModel> callback) {
+        Logger.e(type);
         getGankService().getRandomData(type, COUNT, callback);
     }
 }

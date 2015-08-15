@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,13 @@ import java.util.List;
 
 import io.gank.R;
 import io.gank.adapter.MainPageAdapter;
+import io.gank.fragment.type.AndroidFragment;
+import io.gank.fragment.type.ExpandFragment;
+import io.gank.fragment.type.FrontEndFragment;
+import io.gank.fragment.type.IosFragment;
+import io.gank.fragment.type.RecommendationFragment;
+import io.gank.fragment.type.VideoFragment;
+import io.gank.fragment.type.WelfareFragment;
 
 
 public class TypeFragment extends Fragment {

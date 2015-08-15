@@ -12,6 +12,7 @@
     <string name="random_data">随机干货</string>
     <string name="about">关于</string>
     <string name="back">再按一次返回键退出</string>
+    <string name="open_in_browser">在浏览器中打开</string>
     <array name="type">
         <item>福利</item>
         <item>Android</item>

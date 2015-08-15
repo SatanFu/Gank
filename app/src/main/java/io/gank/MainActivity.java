@@ -74,17 +74,17 @@ public class MainActivity extends AppCompatActivity {
 //            });
 //        }
 
-        GankHttpClient.getRandomData("Android", new Callback<RandomResultModel>() {
-            @Override
-            public void success(RandomResultModel resultModel, Response response) {
-                Logger.e(resultModel.toString() + "---" + resultModel.getResults().size());
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                Logger.e(error.getMessage() + "  " + error.getUrl() + "  " + error.toString());
-            }
-        });
+//        GankHttpClient.getRandomData("Android", new Callback<RandomResultModel>() {
+//            @Override
+//            public void success(RandomResultModel resultModel, Response response) {
+//                Logger.e(resultModel.toString() + "---" + resultModel.getResults().size());
+//            }
+//
+//            @Override
+//            public void failure(RetrofitError error) {
+//                Logger.e(error.getMessage() + "  " + error.getUrl() + "  " + error.toString());
+//            }
+//        });
 
     }
 
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
         mToolbar.setTitle(getResources().getString(R.string.new_data));
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.drawer_open, R.string.drawer_close);
         mDrawerToggle.syncState();
         mDrawerLayout.setDrawerListener(mDrawerToggle);
