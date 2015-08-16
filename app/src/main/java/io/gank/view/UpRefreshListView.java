@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -13,14 +14,14 @@ import com.orhanobut.logger.Logger;
 import io.gank.R;
 
 /**
- * Created by Administrator on 2015/8/15.
+ * Created by satan on 2015/8/15.
  */
 public class UpRefreshListView extends ListView {
 
     private View mFooterView;
-    private UpRefreshListView mUpRefreshListView;
     private boolean isLoading = false;
     private UpRefreshListener mUpRefreshListener;
+    private LinearLayout llFooterContent;
 
     public UpRefreshListView(Context context) {
         this(context, null);
@@ -36,9 +37,11 @@ public class UpRefreshListView extends ListView {
     }
 
     private void init(Context context) {
-        mUpRefreshListView = this;
-        mFooterView = LayoutInflater.from(context).inflate(R.layout.listview_footer, null);
+        mFooterView = LayoutInflater.from(context).inflate(R.layout.listview_footer, this, false);
+        llFooterContent = (LinearLayout) mFooterView.findViewById(R.id.ll_footer_content);
+        addFooterView(mFooterView);
         this.setOnScrollListener(new MyOnScrollListener());
+        updateFooterHeight(0);
     }
 
     public void setUpRefreshListener(UpRefreshListener listener) {
@@ -46,8 +49,14 @@ public class UpRefreshListView extends ListView {
     }
 
     public void onRefreshFinish() {
-        isLoading = false;
-        mUpRefreshListView.removeFooterView(mFooterView);
+        postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                isLoading = false;
+                updateFooterHeight(0);
+            }
+        }, 1000);
+
     }
 
     class MyOnScrollListener implements OnScrollListener {
@@ -60,16 +69,12 @@ public class UpRefreshListView extends ListView {
         @Override
         public void onScroll(final AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
 
-            Logger.e(firstVisibleItem + "----" + visibleItemCount + "----" + totalItemCount);
             if (totalItemCount > visibleItemCount) {
                 int lastItemId = getLastVisiblePosition(); // 获取当前屏幕最后Item的ID
-                Logger.e(lastItemId + "---");
                 if ((lastItemId + 1) == totalItemCount) { // 达到数据的最后一条记录
-//                    System.out.println("data.size111");
                     if (!isLoading) {
                         isLoading = true;
-                        addFooterView(mFooterView);
-//                        mUpRefreshListView.addFooterView(mFooterView);
+                        updateFooterHeight((int) getResources().getDimension(R.dimen.footer_height));
                         if (totalItemCount > 0) {
                             mUpRefreshListener.onUpRefresh();
                         }
@@ -78,6 +83,11 @@ public class UpRefreshListView extends ListView {
             }
 
         }
+    }
+
+    public void updateFooterHeight(int headerHeight) {
+        llFooterContent.getLayoutParams().height = headerHeight;
+        llFooterContent.requestLayout();
     }
 
     public interface UpRefreshListener {

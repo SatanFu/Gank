@@ -40,7 +40,7 @@ public class GankHttpClient {
         getGankService().getTypeData(type, COUNT, String.valueOf(page), callback);
     }
 
-    public static void getRandomData(String type, Callback<RandomResultModel> callback) {
+    public static void getRandomData(String type, Callback<ResultModel> callback) {
         Logger.e(type);
         getGankService().getRandomData(type, COUNT, callback);
     }

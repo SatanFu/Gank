@@ -5,12 +5,26 @@
     android:layout_height="match_parent"
     android:background="#f0f0f0">
 
-    <TextView
-        android:id="@+id/title_text"
+    <LinearLayout
+        android:id="@+id/ll_footer_content"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:text="加载中..."
-        android:textColor="#999999" />
+        android:layout_height="48dp"
+        android:background="#f0f0f0"
+        android:gravity="center">
 
+        <ProgressBar
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:gravity="center"
+            android:text="加载中..."
+            android:textColor="#999999" />
+
+    </LinearLayout>
 </RelativeLayout>

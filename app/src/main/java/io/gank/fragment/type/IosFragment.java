@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.gank.R;
-import io.gank.WebViewActivity;
+import io.gank.activity.WebViewActivity;
 import io.gank.adapter.TypeListAdapter;
 import io.gank.http.GankHttpClient;
 import io.gank.model.GankModel;
@@ -96,10 +96,7 @@ public class IosFragment extends Fragment implements SwipeRefreshLayout.OnRefres
     private void initView(View view) {
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.srl_view);
         mUpRefreshListView = (UpRefreshListView) view.findViewById(R.id.rv_list);
-        mSwipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.red, R.color.blue, R.color.yellow, R.color.green);
 
         mGankModels = new ArrayList<GankModel>();
         mAdapter = new TypeListAdapter(mContext, mGankModels);

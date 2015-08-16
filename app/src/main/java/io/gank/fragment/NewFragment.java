@@ -8,32 +8,28 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
-import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.facebook.imagepipeline.core.ImagePipeline;
-import com.facebook.imagepipeline.core.ImagePipelineFactory;
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import io.gank.activity.ImageGalleryActivity;
 import io.gank.R;
 import io.gank.adapter.NewListAdapter;
-import io.gank.adapter.TypeListAdapter;
 import io.gank.http.GankHttpClient;
 import io.gank.model.GankModel;
 import io.gank.model.NewResultModel;
-import io.gank.util.ViewUtil;
 import io.gank.view.MyListView;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 
-public class NewFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class NewFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
 
     private static NewFragment mNewFragment;
     private Context mContext;
@@ -41,7 +37,9 @@ public class NewFragment extends Fragment implements SwipeRefreshLayout.OnRefres
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private MyListView mListView;
     private List<GankModel> mGankModels;
+    private List<GankModel> mWelfare;
     private NewListAdapter mAdapter;
+    private TextView tvNoData;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,6 +64,7 @@ public class NewFragment extends Fragment implements SwipeRefreshLayout.OnRefres
     }
 
     private void initListener() {
+        mSimpleDraweeView.setOnClickListener(this);
         mSwipeRefreshLayout.setOnRefreshListener(this);
     }
 
@@ -78,6 +77,7 @@ public class NewFragment extends Fragment implements SwipeRefreshLayout.OnRefres
             @Override
             public void success(NewResultModel newResultModel, Response response) {
                 mGankModels.clear();
+                mWelfare.clear();
                 mGankModels.addAll(newResultModel.getResults().getAndroid());
                 mGankModels.addAll(newResultModel.getResults().getIos());
                 mGankModels.addAll(newResultModel.getResults().getExpand());
@@ -85,10 +85,21 @@ public class NewFragment extends Fragment implements SwipeRefreshLayout.OnRefres
                 mGankModels.addAll(newResultModel.getResults().getVideo());
 
                 if (!newResultModel.getResults().getWelfare().isEmpty()) {
-                    String url = newResultModel.getResults().getWelfare().get(0).getUrl();
+                    mWelfare.addAll(newResultModel.getResults().getWelfare());
+                    String url = mWelfare.get(0).getUrl();
                     mSimpleDraweeView.setImageURI(Uri.parse(url));
                 } else {
-                    mSimpleDraweeView.setImageURI(Uri.parse("res://io.gank/" + R.drawable.def_image));
+                    GankModel gankModel = new GankModel();
+                    String uri = "http://wenjue.github.io/image/gank_image.jpg";
+                    gankModel.setUrl(uri);
+                    mWelfare.add(gankModel);
+                    mSimpleDraweeView.setImageURI(Uri.parse(uri));
+                }
+
+                if (mGankModels.isEmpty()) {
+                    tvNoData.setVisibility(View.VISIBLE);
+                } else {
+                    tvNoData.setVisibility(View.GONE);
                 }
 
                 mAdapter.notifyDataSetChanged();
@@ -109,10 +120,12 @@ public class NewFragment extends Fragment implements SwipeRefreshLayout.OnRefres
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.srl_view);
         mListView = (MyListView) view.findViewById(R.id.lv_list);
         mSimpleDraweeView = (SimpleDraweeView) view.findViewById(R.id.sdv_view);
+        tvNoData = (TextView) view.findViewById(R.id.tv_no_data);
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.red, R.color.blue, R.color.yellow, R.color.green);
 
         mGankModels = new ArrayList<GankModel>();
+        mWelfare = new ArrayList<GankModel>();
         mAdapter = new NewListAdapter(mContext, mGankModels);
         mListView.setAdapter(mAdapter);
 
@@ -136,5 +149,14 @@ public class NewFragment extends Fragment implements SwipeRefreshLayout.OnRefres
     @Override
     public void onRefresh() {
         getData();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.sdv_view:
+                ImageGalleryActivity.launch(mContext, mWelfare, 0);
+                break;
+        }
     }
 }

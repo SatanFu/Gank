@@ -21,7 +21,7 @@ public class TypeListAdapter extends CommonAdapter<GankModel> {
 
     @Override
     public void convert(ViewHolder holder, GankModel model, int position) {
-        holder.setText(R.id.tv_who, "via. " + model.getWho())
+        holder.setText(R.id.tv_who, "via: " + model.getWho())
                 .setText(R.id.tv_desc, model.getDesc())
                 .setText(R.id.tv_url, model.getUrl())
                 .setText(R.id.tv_time, model.getPublishedAt().substring(0, 10));

@@ -20,6 +20,6 @@ public interface GankService {
     void getTypeData(@Path("type") String type, @Path("count") String count, @Path("page") String page, Callback<ResultModel> callback);
 
     @GET("/random/data/{type}/{count}")
-    void getRandomData(@Path("type") String type, @Path("count") String count, Callback<RandomResultModel> callback);
+    void getRandomData(@Path("type") String type, @Path("count") String count, Callback<ResultModel> callback);
 
 }

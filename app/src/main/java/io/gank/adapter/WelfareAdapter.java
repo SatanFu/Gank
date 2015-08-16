@@ -1,21 +1,18 @@
 package io.gank.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
 
+import io.gank.activity.ImageGalleryActivity;
 import io.gank.R;
 import io.gank.model.GankModel;
 
@@ -41,13 +38,13 @@ public class WelfareAdapter extends RecyclerView.Adapter<WelfareAdapter.ViewHold
     @Override
     public void onBindViewHolder(WelfareAdapter.ViewHolder holder, final int position) {
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) holder.mSimpleDraweeView.getLayoutParams();
-        layoutParams.height = 600;
+        layoutParams.height = (int) mContext.getResources().getDimension(R.dimen.image_height);
         Uri uri = Uri.parse(mGankModels.get(position).getUrl());
         holder.mSimpleDraweeView.setImageURI(uri);
         holder.mSimpleDraweeView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, mGankModels.get(position).getDesc(), Toast.LENGTH_SHORT).show();
+                ImageGalleryActivity.launch(mContext, mGankModels, position);
             }
         });
     }

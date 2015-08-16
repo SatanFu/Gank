@@ -1,4 +1,4 @@
-package io.gank;
+package io.gank.activity;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,14 +11,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.orhanobut.logger.Logger;
 
+import io.gank.R;
+import io.gank.fragment.AboutFragment;
 import io.gank.fragment.NewFragment;
 import io.gank.fragment.RandomFragment;
 import io.gank.fragment.TypeFragment;
 import io.gank.http.GankHttpClient;
+import io.gank.model.GankModel;
 import io.gank.model.NewResultModel;
 import io.gank.model.RandomResultModel;
 import io.gank.model.ResultModel;
@@ -37,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private Context mContext;
     private Fragment mThisFragment; // 当前页面
     private FragmentTransaction mFragmentTransaction;
+    private LinearLayout mHeaderLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,48 +50,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mContext = this;
         initView();
-        initData();
+        initListener();
     }
 
-    private void initData() {
+    private void initListener() {
+        mHeaderLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final GankModel gankModel = new GankModel();
+                gankModel.setDesc("satan");
+                gankModel.setUrl(getResources().getString(R.string.github));
+                mDrawerLayout.closeDrawers();
+                mHeaderLayout.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        WebViewActivity.launch(mContext, gankModel);
+                    }
+                }, 180);
 
-//        GankHttpClient.getNewData(2015, 8, 14, new Callback<NewResultModel>() {
-//            @Override
-//            public void success(NewResultModel newResultModel, Response response) {
-//                Logger.e(newResultModel.toString());
-//            }
-//
-//            @Override
-//            public void failure(RetrofitError error) {
-//            }
-//        });
-//
-//        for (final String type : getResources().getStringArray(R.array.type)) {
-//            GankHttpClient.getTypeData(type, 1, new Callback<ResultModel>() {
-//                @Override
-//                public void success(ResultModel resultModel, Response response) {
-//                    Logger.e(type + " -- " + resultModel.toString());
-//                }
-//
-//                @Override
-//                public void failure(RetrofitError error) {
-//
-//                }
-//            });
-//        }
-
-//        GankHttpClient.getRandomData("Android", new Callback<RandomResultModel>() {
-//            @Override
-//            public void success(RandomResultModel resultModel, Response response) {
-//                Logger.e(resultModel.toString() + "---" + resultModel.getResults().size());
-//            }
-//
-//            @Override
-//            public void failure(RetrofitError error) {
-//                Logger.e(error.getMessage() + "  " + error.getUrl() + "  " + error.toString());
-//            }
-//        });
-
+            }
+        });
     }
 
     private void initView() {
@@ -98,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mHeaderLayout = (LinearLayout) findViewById(R.id.ll_header);
 
         mToolbar.setTitle(getResources().getString(R.string.new_data));
         setSupportActionBar(mToolbar);
@@ -130,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                                 mToolbar.setTitle(getResources().getString(R.string.random_data));
                                 break;
                             case R.id.nav_about:
-                                switchContent(RandomFragment.newInstance());
+                                switchContent(AboutFragment.newInstance());
                                 mToolbar.setTitle(getResources().getString(R.string.about));
                                 break;
                         }

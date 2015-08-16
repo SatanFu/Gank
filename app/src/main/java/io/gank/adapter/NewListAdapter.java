@@ -5,12 +5,10 @@ import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.widget.TextView;
 
-import com.orhanobut.logger.Logger;
-
 import java.util.List;
 
 import io.gank.R;
-import io.gank.WebViewActivity;
+import io.gank.activity.WebViewActivity;
 import io.gank.model.GankModel;
 import io.gank.util.StringStyleUtils;
 import io.gank.util.ViewHolder;
@@ -44,7 +42,7 @@ public class NewListAdapter extends CommonAdapter<GankModel> {
         }
         tvType.setText(model.getType());
         SpannableStringBuilder builder = new SpannableStringBuilder(model.getDesc())
-                .append(StringStyleUtils.format(mContext, " (via. " + model.getWho() + ")",
+                .append(StringStyleUtils.format(mContext, " (via: " + model.getWho() + ")",
                         R.style.ViaTextAppearance));
         CharSequence gankText = builder.subSequence(0, builder.length());
         tvGank.setText(gankText);

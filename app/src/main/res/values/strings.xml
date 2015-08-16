@@ -13,6 +13,11 @@
     <string name="about">关于</string>
     <string name="back">再按一次返回键退出</string>
     <string name="open_in_browser">在浏览器中打开</string>
+    <string name="daimajia"><u>代码家</u></string>
+    <string name="gank"><u>干货集中营</u></string>
+    <string name="drakeet"><u>drakeet</u></string>
+    <string name="meizi"><u>妹子.gank.io</u></string>
+    <string name="me"><u>me</u></string>
     <array name="type">
         <item>福利</item>
         <item>Android</item>

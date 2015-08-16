@@ -22,6 +22,15 @@
                 android:layout_height="200dp"
                 app:placeholderImage="@color/stay_color" />
 
+            <TextView
+                android:id="@+id/tv_no_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="今天干货集中营编辑们休息^_^，感谢干货集中营编辑们的奉献，耐心等待下一期吧，么么哒！"
+                android:textColor="@android:color/white"
+                android:visibility="gone" />
+
             <io.gank.view.MyListView
                 android:id="@+id/lv_list"
                 android:layout_width="match_parent"
