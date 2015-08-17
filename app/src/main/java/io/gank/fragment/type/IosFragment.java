@@ -74,7 +74,6 @@ public class IosFragment extends Fragment implements SwipeRefreshLayout.OnRefres
         GankHttpClient.getTypeData(getResources().getStringArray(R.array.type)[2], page, new Callback<ResultModel>() {
             @Override
             public void success(ResultModel resultModel, Response response) {
-                Logger.e(resultModel.getResults().size() + "------");
                 if (page == 1) {
                     mGankModels.clear();
                 }

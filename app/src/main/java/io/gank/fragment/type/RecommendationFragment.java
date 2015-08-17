@@ -68,7 +68,6 @@ public class RecommendationFragment extends Fragment implements SwipeRefreshLayo
         GankHttpClient.getTypeData(getResources().getStringArray(R.array.type)[6], page, new Callback<ResultModel>() {
             @Override
             public void success(ResultModel resultModel, Response response) {
-                Logger.e(resultModel.getResults().size() + "------");
                 if (page == 1) {
                     mGankModels.clear();
                 }

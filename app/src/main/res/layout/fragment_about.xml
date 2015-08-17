@@ -164,6 +164,15 @@
                     android:text="@string/me"
                     android:textColor="@color/md_blue_900"
                     android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/tv_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/code"
+                    android:textColor="@color/md_blue_900"
+                    android:textSize="16dp" />
             </LinearLayout>
 
         </LinearLayout>

@@ -1,16 +1,12 @@
 package io.gank.view;
 
 import android.content.Context;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
-
-import com.orhanobut.logger.Logger;
 
 import io.gank.R;
 
@@ -41,7 +37,6 @@ public class UpRefreshRecyclerView extends RecyclerView {
     private void init(Context context) {
         mFooterView = LayoutInflater.from(context).inflate(R.layout.listview_footer, null);
         llFooterContent = (LinearLayout) mFooterView.findViewById(R.id.ll_footer_content);
-//        addFooterView(mFooterView);
         this.addOnScrollListener(new MyOnScrollListener());
         updateFooterHeight(0);
     }
@@ -80,10 +75,8 @@ public class UpRefreshRecyclerView extends RecyclerView {
 
                 visibleItemCount = (lastVisibleItems[1] - firstVisibleItems[0]) + 1;
 
-                Logger.e("firstLisibleItems: " + firstVisibleItems[0] + " " + firstVisibleItems[1] + "  lastLisibleItems: " + lastVisibleItems[0] + " " + lastVisibleItems[1]);
             }
             int totalItemCount = getAdapter().getItemCount();
-            Logger.e("totalItemCount: " + totalItemCount);
 
             if (totalItemCount > visibleItemCount) {
                 int lastItemId = Math.max(lastVisibleItems[0], lastVisibleItems[1]); // 获取当前屏幕最后Item的ID

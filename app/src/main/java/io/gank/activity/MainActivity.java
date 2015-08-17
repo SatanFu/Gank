@@ -15,21 +15,12 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.orhanobut.logger.Logger;
-
 import io.gank.R;
 import io.gank.fragment.AboutFragment;
 import io.gank.fragment.NewFragment;
 import io.gank.fragment.RandomFragment;
 import io.gank.fragment.TypeFragment;
-import io.gank.http.GankHttpClient;
 import io.gank.model.GankModel;
-import io.gank.model.NewResultModel;
-import io.gank.model.RandomResultModel;
-import io.gank.model.ResultModel;
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -66,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         WebViewActivity.launch(mContext, gankModel);
                     }
-                }, 180);
+                }, 220);
 
             }
         });

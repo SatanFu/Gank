@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="今天干货集中营编辑们休息^_^，感谢干货集中营编辑们的奉献，耐心等待下一期吧，么么哒！"
+                android:text="今天干货还未更新，请耐心等待^_^，感谢干货集中营编辑们的奉献，么么哒！"
                 android:textColor="@android:color/white"
                 android:visibility="gone" />
 

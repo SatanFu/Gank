@@ -7,9 +7,6 @@ import android.view.View;
 import android.widget.AbsListView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Toast;
-
-import com.orhanobut.logger.Logger;
 
 import io.gank.R;
 

@@ -75,7 +75,6 @@ public class AndroidFragment extends Fragment implements SwipeRefreshLayout.OnRe
         GankHttpClient.getTypeData(getResources().getStringArray(R.array.type)[1], page, new Callback<ResultModel>() {
             @Override
             public void success(ResultModel resultModel, Response response) {
-                Logger.e(resultModel.getResults().size() + "------");
                 if (page == 1) {
                     mGankModels.clear();
                 }

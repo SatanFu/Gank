@@ -24,6 +24,7 @@ public class AboutFragment extends Fragment implements View.OnClickListener {
     private TextView tvDrakeet;
     private TextView tvMeiZi;
     private TextView tvMe;
+    private TextView tvCode;
 
 
     @Override
@@ -45,6 +46,7 @@ public class AboutFragment extends Fragment implements View.OnClickListener {
         tvDrakeet = (TextView) view.findViewById(R.id.tv_drakeet);
         tvMeiZi = (TextView) view.findViewById(R.id.tv_meizi);
         tvMe = (TextView) view.findViewById(R.id.tv_satan);
+        tvCode = (TextView) view.findViewById(R.id.tv_code);
     }
 
     private void initData() {
@@ -62,7 +64,7 @@ public class AboutFragment extends Fragment implements View.OnClickListener {
         tvDrakeet.setOnClickListener(this);
         tvMeiZi.setOnClickListener(this);
         tvMe.setOnClickListener(this);
-
+        tvCode.setOnClickListener(this);
     }
 
     public static AboutFragment newInstance() {
@@ -98,6 +100,10 @@ public class AboutFragment extends Fragment implements View.OnClickListener {
             case R.id.tv_satan:
                 gankModel.setDesc("satan");
                 gankModel.setUrl(mContext.getResources().getString(R.string.github));
+                break;
+            case R.id.tv_code:
+                gankModel.setDesc("gank");
+                gankModel.setUrl("https://github.com/wenjue/Gank");
                 break;
 
         }

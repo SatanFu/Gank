@@ -4,12 +4,10 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import com.orhanobut.logger.Logger;
 
@@ -17,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.gank.R;
-import io.gank.activity.WebViewActivity;
 import io.gank.adapter.WelfareAdapter;
 import io.gank.http.GankHttpClient;
 import io.gank.model.GankModel;
@@ -75,7 +72,6 @@ public class WelfareFragment extends Fragment implements UpRefreshRecyclerView.U
                     mGankModels.clear();
                 }
                 mGankModels.addAll(resultModel.getResults());
-                Logger.e(resultModel.toString());
                 mWelfareAdapter.notifyDataSetChanged();
 
                 mUpRefreshRecyclerView.onRefreshFinish();
@@ -84,6 +80,7 @@ public class WelfareFragment extends Fragment implements UpRefreshRecyclerView.U
 
             @Override
             public void failure(RetrofitError error) {
+                Logger.e(error.getMessage());
                 mUpRefreshRecyclerView.onRefreshFinish();
                 mSwipeRefreshLayout.setRefreshing(false);
             }

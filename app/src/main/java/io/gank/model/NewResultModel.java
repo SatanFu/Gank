@@ -12,7 +12,7 @@ public class NewResultModel implements Serializable {
     private boolean error;
 
     @SerializedName("results")
-    private NewModel results;
+    private NewModel results = new NewModel();
 
     public boolean isError() {
         return error;

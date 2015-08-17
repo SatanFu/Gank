@@ -74,7 +74,6 @@ public class FrontEndFragment extends Fragment implements UpRefreshListView.UpRe
         GankHttpClient.getTypeData(getResources().getStringArray(R.array.type)[5], page, new Callback<ResultModel>() {
             @Override
             public void success(ResultModel resultModel, Response response) {
-                Logger.e(resultModel.getResults().size() + "------");
                 if (page == 1) {
                     mGankModels.clear();
                 }

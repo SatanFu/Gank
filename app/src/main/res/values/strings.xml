@@ -18,6 +18,7 @@
     <string name="drakeet"><u>drakeet</u></string>
     <string name="meizi"><u>妹子.gank.io</u></string>
     <string name="me"><u>me</u></string>
+    <string name="code"><u>项目源码</u></string>
     <array name="type">
         <item>福利</item>
         <item>Android</item>
