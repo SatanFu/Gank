@@ -33,7 +33,7 @@ public class AndroidFragment extends Fragment implements SwipeRefreshLayout.OnRe
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private UpRefreshListView mUpRefreshListView;
     private List<GankModel> mGankModels;
-    private TypeListAdapter mAdapter;
+    private DataBindingAdapter mAdapter;
     private int page = 1;
 
     @Override
@@ -99,7 +99,7 @@ public class AndroidFragment extends Fragment implements SwipeRefreshLayout.OnRe
         mSwipeRefreshLayout.setColorSchemeResources(R.color.red, R.color.blue, R.color.yellow, R.color.green);
 
         mGankModels = new ArrayList<GankModel>();
-        mAdapter = new TypeListAdapter(mContext, mGankModels);
+        mAdapter = new DataBindingAdapter(mContext, mGankModels);
         mUpRefreshListView.setAdapter(mAdapter);
     }
 

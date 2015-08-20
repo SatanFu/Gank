@@ -78,6 +78,7 @@ public class WebViewActivity extends AppCompatActivity {
                     mProgressBar.setVisibility(View.VISIBLE);
                 }
             }
+
         });
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
@@ -88,6 +89,7 @@ public class WebViewActivity extends AppCompatActivity {
 
 
         });
+
     }
 
 

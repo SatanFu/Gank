@@ -21,6 +21,7 @@ import io.gank.fragment.NewFragment;
 import io.gank.fragment.RandomFragment;
 import io.gank.fragment.TypeFragment;
 import io.gank.model.GankModel;
+import io.gank.util.LogUtil;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -64,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-
         mFragmentTransaction = this.getSupportFragmentManager().beginTransaction();
         mThisFragment = NewFragment.newInstance();
         mFragmentTransaction.add(R.id.content, mThisFragment);
