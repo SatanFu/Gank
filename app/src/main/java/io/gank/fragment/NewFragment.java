@@ -1,17 +1,18 @@
 package io.gank.fragment;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
-import com.facebook.drawee.view.SimpleDraweeView;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class NewFragment extends Fragment implements SwipeRefreshLayout.OnRefres
 
     private static NewFragment mNewFragment;
     private Context mContext;
-    private SimpleDraweeView mSimpleDraweeView;
+    private ImageView mImageView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private MyListView mListView;
     private List<GankModel> mGankModels;
@@ -75,7 +76,7 @@ public class NewFragment extends Fragment implements SwipeRefreshLayout.OnRefres
     }
 
     private void initListener() {
-        mSimpleDraweeView.setOnClickListener(this);
+        mImageView.setOnClickListener(this);
         mSwipeRefreshLayout.setOnRefreshListener(this);
     }
 
@@ -113,16 +114,16 @@ public class NewFragment extends Fragment implements SwipeRefreshLayout.OnRefres
             mGankModels.addAll(newResultModel.getResults().getVideo());
             mWelfare.addAll(newResultModel.getResults().getWelfare());
             String url = mWelfare.get(0).getUrl();
-            mSimpleDraweeView.setImageURI(Uri.parse(url));
+            Glide.with(mContext).load(url).centerCrop().into(mImageView);
             GankApplication.setOldGank(mContext, JSON.toJSONString(newResultModel));
             mAdapter.notifyDataSetChanged();
         } else {
             if (GankApplication.getOldGank(mContext).getResults().getWelfare().isEmpty()) {
                 GankModel gankModel = new GankModel();
-                String uri = "http://wenjue.github.io/image/gank_image.jpg";
-                gankModel.setUrl(uri);
+                String url = "http://wenjue.github.io/image/gank_image.jpg";
+                gankModel.setUrl(url);
                 mWelfare.add(gankModel);
-                mSimpleDraweeView.setImageURI(Uri.parse(uri));
+                Glide.with(mContext).load(url).placeholder(R.color.stay_color).diskCacheStrategy(DiskCacheStrategy.ALL).centerCrop().into(mImageView);
             }
         }
         if (mGankModels.isEmpty()) {
@@ -137,7 +138,7 @@ public class NewFragment extends Fragment implements SwipeRefreshLayout.OnRefres
     private void initView(View view) {
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.srl_view);
         mListView = (MyListView) view.findViewById(R.id.lv_list);
-        mSimpleDraweeView = (SimpleDraweeView) view.findViewById(R.id.sdv_view);
+        mImageView = (ImageView) view.findViewById(R.id.sdv_view);
         tvNoData = (TextView) view.findViewById(R.id.tv_no_data);
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.red, R.color.blue, R.color.yellow, R.color.green);

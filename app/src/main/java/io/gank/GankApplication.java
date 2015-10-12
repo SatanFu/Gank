@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.alibaba.fastjson.JSON;
-import com.facebook.drawee.backends.pipeline.Fresco;
 
 import io.gank.model.NewResultModel;
 import io.gank.util.StringUtils;
@@ -17,7 +16,6 @@ public class GankApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Fresco.initialize(this);
     }
 
     public static NewResultModel getOldGank(Context context) {

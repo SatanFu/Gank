@@ -1,21 +1,22 @@
 package io.gank.adapter;
 
 import android.content.Context;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.facebook.drawee.view.SimpleDraweeView;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
 
-import io.gank.activity.ImageGalleryActivity;
 import io.gank.R;
+import io.gank.activity.ImageGalleryActivity;
 import io.gank.activity.WebViewActivity;
 import io.gank.model.GankModel;
 
@@ -62,12 +63,12 @@ public class RandomAdapter extends RecyclerView.Adapter<RandomAdapter.ViewHolder
         final GankModel gankModel = mGankModels.get(position);
         if (getItemViewType(position) == WELFARE_TYPE) {
             holder.mOther.setVisibility(View.GONE);
-            holder.mSimpleDraweeView.setVisibility(View.VISIBLE);
-            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) holder.mSimpleDraweeView.getLayoutParams();
+            holder.mImageView.setVisibility(View.VISIBLE);
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) holder.mImageView.getLayoutParams();
             layoutParams.height = (int) mContext.getResources().getDimension(R.dimen.random_image_height);
-            Uri uri = Uri.parse(gankModel.getUrl());
-            holder.mSimpleDraweeView.setImageURI(uri);
-            holder.mSimpleDraweeView.setOnClickListener(new View.OnClickListener() {
+            String url = mGankModels.get(position).getUrl();
+            Glide.with(mContext).load(url).placeholder(R.color.stay_color).diskCacheStrategy(DiskCacheStrategy.ALL).centerCrop().into(holder.mImageView);
+            holder.mImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     ImageGalleryActivity.launch(mContext, mGankModels, position);
@@ -75,7 +76,7 @@ public class RandomAdapter extends RecyclerView.Adapter<RandomAdapter.ViewHolder
             });
         } else {
             holder.mOther.setVisibility(View.VISIBLE);
-            holder.mSimpleDraweeView.setVisibility(View.GONE);
+            holder.mImageView.setVisibility(View.GONE);
             holder.mWho.setText("via: " + gankModel.getWho());
             holder.mDesc.setText(gankModel.getDesc());
             holder.mUrl.setText(gankModel.getUrl());
@@ -94,19 +95,10 @@ public class RandomAdapter extends RecyclerView.Adapter<RandomAdapter.ViewHolder
         return mGankModels.size();
     }
 
-    @Override
-    public void onViewRecycled(ViewHolder holder) {
-        if (holder.mSimpleDraweeView.getController() != null) {
-            holder.mSimpleDraweeView.getController().onDetach();
-        }
-        if (holder.mSimpleDraweeView.getTopLevelDrawable() != null) {
-            holder.mSimpleDraweeView.getTopLevelDrawable().setCallback(null);
-        }
-    }
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        SimpleDraweeView mSimpleDraweeView;
+        ImageView mImageView;
         RelativeLayout mOther;
         TextView mWho;
         TextView mDesc;
@@ -115,7 +107,7 @@ public class RandomAdapter extends RecyclerView.Adapter<RandomAdapter.ViewHolder
 
         public ViewHolder(View itemView) {
             super(itemView);
-            mSimpleDraweeView = (SimpleDraweeView) itemView.findViewById(R.id.sdv_view);
+            mImageView = (ImageView) itemView.findViewById(R.id.sdv_view);
             mOther = (RelativeLayout) itemView.findViewById(R.id.rl_other);
             mWho = (TextView) itemView.findViewById(R.id.tv_who);
             mDesc = (TextView) itemView.findViewById(R.id.tv_desc);

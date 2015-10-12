@@ -1,13 +1,14 @@
 package io.gank.adapter;
 
 import android.content.Context;
-import android.net.Uri;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
-import com.facebook.drawee.view.SimpleDraweeView;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
 
@@ -47,8 +48,10 @@ public class ViewPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.view_pager_item, null);
-        SimpleDraweeView img = (SimpleDraweeView) view.findViewById(R.id.sdv_view);
-        img.setImageURI(Uri.parse(mGankModels.get(position).getUrl()));
+        ImageView img = (ImageView) view.findViewById(R.id.sdv_view);
+        Glide.with(mContext).load(mGankModels.get(position).getUrl())
+                .placeholder(R.drawable.icon_image_loading).error(R.drawable.icon_image_failure)
+                .diskCacheStrategy(DiskCacheStrategy.ALL).into(img);
         container.addView(view);
         return view;
     }
