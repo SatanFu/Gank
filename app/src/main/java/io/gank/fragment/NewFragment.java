@@ -166,6 +166,8 @@ public class NewFragment extends Fragment implements SwipeRefreshLayout.OnRefres
         getData();
     }
 
+
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

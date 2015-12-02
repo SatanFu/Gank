@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
 
-    <ImageView
+    <io.gank.view.PinchImageView
         android:id="@+id/sdv_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

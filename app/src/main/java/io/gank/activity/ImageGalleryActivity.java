@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -17,8 +15,7 @@ import io.gank.R;
 import io.gank.adapter.ViewPagerAdapter;
 import io.gank.model.GankModel;
 
-public class ImageGalleryActivity extends Activity implements
-        OnClickListener {
+public class ImageGalleryActivity extends Activity {
 
     private ViewPager mViewPager;
     private TextView mCount;
@@ -54,9 +51,7 @@ public class ImageGalleryActivity extends Activity implements
         mCount.setText((position + 1) + "/" + mGankModels.size());
 
         mViewPager.setAdapter(new ViewPagerAdapter(mContext, mGankModels));
-
         mViewPager.setCurrentItem(position);
-
         mViewPager.addOnPageChangeListener(new OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -74,14 +69,4 @@ public class ImageGalleryActivity extends Activity implements
             }
         });
     }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.sdv_view:
-                this.finish();
-                break;
-        }
-    }
-
 }

@@ -13,7 +13,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import java.util.List;
 
 import io.gank.R;
+import io.gank.activity.ImageGalleryActivity;
 import io.gank.model.GankModel;
+import io.gank.view.PinchImageView;
 
 public class ViewPagerAdapter extends PagerAdapter {
 
@@ -48,7 +50,7 @@ public class ViewPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.view_pager_item, null);
-        ImageView img = (ImageView) view.findViewById(R.id.sdv_view);
+        PinchImageView img = (PinchImageView) view.findViewById(R.id.sdv_view);
         Glide.with(mContext).load(mGankModels.get(position).getUrl())
                 .placeholder(R.drawable.icon_image_loading).error(R.drawable.icon_image_failure)
                 .diskCacheStrategy(DiskCacheStrategy.ALL).into(img);
