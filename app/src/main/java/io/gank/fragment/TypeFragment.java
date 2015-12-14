@@ -15,6 +15,7 @@ import java.util.List;
 import io.gank.R;
 import io.gank.adapter.MainPageAdapter;
 import io.gank.fragment.type.AndroidFragment;
+import io.gank.fragment.type.AppFragment;
 import io.gank.fragment.type.ExpandFragment;
 import io.gank.fragment.type.FrontEndFragment;
 import io.gank.fragment.type.IosFragment;
@@ -67,6 +68,7 @@ public class TypeFragment extends Fragment {
         pagerFragmentList.add(ExpandFragment.newInstance());
         pagerFragmentList.add(FrontEndFragment.newInstance());
         pagerFragmentList.add(RecommendationFragment.newInstance());
+        pagerFragmentList.add(AppFragment.newInstance());
         return pagerFragmentList;
 
     }
